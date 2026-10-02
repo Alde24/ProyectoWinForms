@@ -122,5 +122,37 @@ namespace ControlVehiculos.Repositories
                 throw new Exception("Error al obtener choferes: " + ex.Message);
             }
         }
+
+        //Obtener un chofer por su numero
+        public Chofer obtenerPorNumero(int numChofer)
+        {
+            string query = "SELECT * FROM Choferes WHERE numChofer = @numero";
+            try
+            {
+                using (var conexion = ConexionBD.ObtenerConexion())
+                {
+                    conexion.Open();
+                    using (var comando = new MySqlCommand(query, conexion))
+                    {
+                        comando.Parameters.AddWithValue("@numero", numChofer);
+                        using (var reader = comando.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                string nombre = reader.GetString("nombre");
+                                DateOnly fechaIngreso = DateOnly.Parse(reader.GetDateTime("fechaIngreso").ToString("yyyy-MM-dd"));
+                                decimal sueldo = reader.GetDecimal("sueldo");
+                                return new Chofer(numChofer, nombre, fechaIngreso, sueldo);
+                            }
+                        }
+                    }
+                }
+                return null;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al obtener chofer: " + ex.Message);
+            }
+        }
     }
 }

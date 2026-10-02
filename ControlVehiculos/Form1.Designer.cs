@@ -31,10 +31,6 @@
             tabControlVehiculos = new TabControl();
             tabPageVehiculos = new TabPage();
             tableVehiculos = new DataGridView();
-            buttonAgregarVehiculo = new Button();
-            buttonBuscarPlaca = new Button();
-            textBoxPlacas = new TextBox();
-            tabPageChoferes = new TabPage();
             colPlacas = new DataGridViewTextBoxColumn();
             colNumChofere = new DataGridViewTextBoxColumn();
             colModelo = new DataGridViewTextBoxColumn();
@@ -44,8 +40,12 @@
             colKmActual = new DataGridViewTextBoxColumn();
             colEditar = new DataGridViewButtonColumn();
             colEliminar = new DataGridViewButtonColumn();
-            tableChoferes = new DataGridView();
+            buttonAgregarVehiculo = new Button();
+            buttonBuscarPlaca = new Button();
+            txtBuscarPlaca = new TextBox();
+            tabPageChoferes = new TabPage();
             buttonAgregarChofer = new Button();
+            tableChoferes = new DataGridView();
             colNumChofer = new DataGridViewTextBoxColumn();
             colNombre = new DataGridViewTextBoxColumn();
             colFechaIngreso = new DataGridViewTextBoxColumn();
@@ -76,7 +76,7 @@
             tabPageVehiculos.Controls.Add(tableVehiculos);
             tabPageVehiculos.Controls.Add(buttonAgregarVehiculo);
             tabPageVehiculos.Controls.Add(buttonBuscarPlaca);
-            tabPageVehiculos.Controls.Add(textBoxPlacas);
+            tabPageVehiculos.Controls.Add(txtBuscarPlaca);
             tabPageVehiculos.Location = new Point(4, 32);
             tabPageVehiculos.Name = "tabPageVehiculos";
             tabPageVehiculos.Padding = new Padding(3);
@@ -100,50 +100,9 @@
             tableVehiculos.TabIndex = 3;
             tableVehiculos.CellContentClick += tableVehiculos_CellContentClick;
             // 
-            // buttonAgregarVehiculo
-            // 
-            buttonAgregarVehiculo.Location = new Point(24, 355);
-            buttonAgregarVehiculo.Name = "buttonAgregarVehiculo";
-            buttonAgregarVehiculo.Size = new Size(144, 29);
-            buttonAgregarVehiculo.TabIndex = 2;
-            buttonAgregarVehiculo.Text = "Agregar vehiculo";
-            buttonAgregarVehiculo.UseVisualStyleBackColor = true;
-            // 
-            // buttonBuscarPlaca
-            // 
-            buttonBuscarPlaca.Location = new Point(342, 21);
-            buttonBuscarPlaca.Name = "buttonBuscarPlaca";
-            buttonBuscarPlaca.Size = new Size(60, 27);
-            buttonBuscarPlaca.TabIndex = 1;
-            buttonBuscarPlaca.TabStop = false;
-            buttonBuscarPlaca.Text = "Buscar";
-            buttonBuscarPlaca.UseMnemonic = false;
-            buttonBuscarPlaca.UseVisualStyleBackColor = true;
-            // 
-            // textBoxPlacas
-            // 
-            textBoxPlacas.Location = new Point(24, 21);
-            textBoxPlacas.MaxLength = 7;
-            textBoxPlacas.Name = "textBoxPlacas";
-            textBoxPlacas.PlaceholderText = "Ingresa la placa a buscar";
-            textBoxPlacas.Size = new Size(297, 27);
-            textBoxPlacas.TabIndex = 0;
-            textBoxPlacas.TextChanged += textBox1_TextChanged;
-            // 
-            // tabPageChoferes
-            // 
-            tabPageChoferes.Controls.Add(buttonAgregarChofer);
-            tabPageChoferes.Controls.Add(tableChoferes);
-            tabPageChoferes.Location = new Point(4, 32);
-            tabPageChoferes.Name = "tabPageChoferes";
-            tabPageChoferes.Padding = new Padding(3);
-            tabPageChoferes.Size = new Size(768, 390);
-            tabPageChoferes.TabIndex = 1;
-            tabPageChoferes.Text = "Choferes";
-            tabPageChoferes.UseVisualStyleBackColor = true;
-            // 
             // colPlacas
             // 
+            colPlacas.DataPropertyName = "placa";
             colPlacas.HeaderText = "Placas";
             colPlacas.MaxInputLength = 7;
             colPlacas.MinimumWidth = 6;
@@ -153,6 +112,7 @@
             // 
             // colNumChofere
             // 
+            colNumChofere.DataPropertyName = "numChofer";
             colNumChofere.HeaderText = "No. de chofer";
             colNumChofere.MaxInputLength = 2;
             colNumChofere.MinimumWidth = 6;
@@ -162,6 +122,7 @@
             // 
             // colModelo
             // 
+            colModelo.DataPropertyName = "modelo";
             colModelo.HeaderText = "Modelo";
             colModelo.MaxInputLength = 4;
             colModelo.MinimumWidth = 6;
@@ -171,6 +132,7 @@
             // 
             // colMarca
             // 
+            colMarca.DataPropertyName = "marca";
             colMarca.HeaderText = "Marca";
             colMarca.MaxInputLength = 25;
             colMarca.MinimumWidth = 6;
@@ -180,6 +142,7 @@
             // 
             // colFechaCompra
             // 
+            colFechaCompra.DataPropertyName = "fechaCompra";
             colFechaCompra.HeaderText = "Fecha de Compra";
             colFechaCompra.MinimumWidth = 6;
             colFechaCompra.Name = "colFechaCompra";
@@ -188,6 +151,7 @@
             // 
             // colCostoCompra
             // 
+            colCostoCompra.DataPropertyName = "costo";
             colCostoCompra.HeaderText = "Costo de Compra";
             colCostoCompra.MinimumWidth = 6;
             colCostoCompra.Name = "colCostoCompra";
@@ -196,6 +160,7 @@
             // 
             // colKmActual
             // 
+            colKmActual.DataPropertyName = "kilometraje";
             colKmActual.HeaderText = "Kilometraje actual";
             colKmActual.MaxInputLength = 10;
             colKmActual.MinimumWidth = 6;
@@ -209,6 +174,7 @@
             colEditar.MinimumWidth = 6;
             colEditar.Name = "colEditar";
             colEditar.ReadOnly = true;
+            colEditar.Text = "Editar";
             colEditar.UseColumnTextForButtonValue = true;
             colEditar.Width = 125;
             // 
@@ -218,8 +184,63 @@
             colEliminar.MinimumWidth = 6;
             colEliminar.Name = "colEliminar";
             colEliminar.ReadOnly = true;
+            colEliminar.Text = "Eliminar";
             colEliminar.UseColumnTextForButtonValue = true;
             colEliminar.Width = 125;
+            // 
+            // buttonAgregarVehiculo
+            // 
+            buttonAgregarVehiculo.Location = new Point(24, 355);
+            buttonAgregarVehiculo.Name = "buttonAgregarVehiculo";
+            buttonAgregarVehiculo.Size = new Size(144, 29);
+            buttonAgregarVehiculo.TabIndex = 2;
+            buttonAgregarVehiculo.Text = "Agregar vehiculo";
+            buttonAgregarVehiculo.UseVisualStyleBackColor = true;
+            buttonAgregarVehiculo.Click += buttonAgregarVehiculo_Click;
+            // 
+            // buttonBuscarPlaca
+            // 
+            buttonBuscarPlaca.Location = new Point(342, 21);
+            buttonBuscarPlaca.Name = "buttonBuscarPlaca";
+            buttonBuscarPlaca.Size = new Size(60, 27);
+            buttonBuscarPlaca.TabIndex = 1;
+            buttonBuscarPlaca.TabStop = false;
+            buttonBuscarPlaca.Text = "Buscar";
+            buttonBuscarPlaca.UseMnemonic = false;
+            buttonBuscarPlaca.UseVisualStyleBackColor = true;
+            buttonBuscarPlaca.Click += buttonBuscarPlaca_Click;
+            // 
+            // txtBuscarPlaca
+            // 
+            txtBuscarPlaca.Location = new Point(24, 21);
+            txtBuscarPlaca.MaxLength = 7;
+            txtBuscarPlaca.Name = "txtBuscarPlaca";
+            txtBuscarPlaca.PlaceholderText = "Ingresa la placa a buscar";
+            txtBuscarPlaca.Size = new Size(297, 27);
+            txtBuscarPlaca.TabIndex = 0;
+            txtBuscarPlaca.TextChanged += textBox1_TextChanged;
+            // 
+            // tabPageChoferes
+            // 
+            tabPageChoferes.Controls.Add(buttonAgregarChofer);
+            tabPageChoferes.Controls.Add(tableChoferes);
+            tabPageChoferes.Location = new Point(4, 32);
+            tabPageChoferes.Name = "tabPageChoferes";
+            tabPageChoferes.Padding = new Padding(3);
+            tabPageChoferes.Size = new Size(768, 390);
+            tabPageChoferes.TabIndex = 1;
+            tabPageChoferes.Text = "Choferes";
+            tabPageChoferes.UseVisualStyleBackColor = true;
+            // 
+            // buttonAgregarChofer
+            // 
+            buttonAgregarChofer.Location = new Point(31, 334);
+            buttonAgregarChofer.Name = "buttonAgregarChofer";
+            buttonAgregarChofer.Size = new Size(122, 29);
+            buttonAgregarChofer.TabIndex = 1;
+            buttonAgregarChofer.Text = "Agregar chofer";
+            buttonAgregarChofer.UseVisualStyleBackColor = true;
+            buttonAgregarChofer.Click += buttonAgregarChofer_Click;
             // 
             // tableChoferes
             // 
@@ -233,19 +254,11 @@
             tableChoferes.RowHeadersWidth = 51;
             tableChoferes.Size = new Size(718, 274);
             tableChoferes.TabIndex = 0;
-            // 
-            // buttonAgregarChofer
-            // 
-            buttonAgregarChofer.Location = new Point(31, 334);
-            buttonAgregarChofer.Name = "buttonAgregarChofer";
-            buttonAgregarChofer.Size = new Size(122, 29);
-            buttonAgregarChofer.TabIndex = 1;
-            buttonAgregarChofer.Text = "Agregar chofer";
-            buttonAgregarChofer.UseVisualStyleBackColor = true;
-            buttonAgregarChofer.Click += button1_Click;
+            tableChoferes.CellContentClick += tableChoferes_CellContentClick;
             // 
             // colNumChofer
             // 
+            colNumChofer.DataPropertyName = "numChofer";
             colNumChofer.HeaderText = "No. de chofer";
             colNumChofer.MaxInputLength = 2;
             colNumChofer.MinimumWidth = 6;
@@ -255,6 +268,7 @@
             // 
             // colNombre
             // 
+            colNombre.DataPropertyName = "nombre";
             colNombre.HeaderText = "Nombre del chofer";
             colNombre.MaxInputLength = 50;
             colNombre.MinimumWidth = 6;
@@ -264,6 +278,7 @@
             // 
             // colFechaIngreso
             // 
+            colFechaIngreso.DataPropertyName = "fechaIngreso";
             colFechaIngreso.HeaderText = "Fecha de Ingreso";
             colFechaIngreso.MinimumWidth = 6;
             colFechaIngreso.Name = "colFechaIngreso";
@@ -272,6 +287,7 @@
             // 
             // colSueldo
             // 
+            colSueldo.DataPropertyName = "sueldo";
             colSueldo.HeaderText = "Sueldo";
             colSueldo.MinimumWidth = 6;
             colSueldo.Name = "colSueldo";
@@ -284,6 +300,8 @@
             colEditarChofer.MinimumWidth = 6;
             colEditarChofer.Name = "colEditarChofer";
             colEditarChofer.ReadOnly = true;
+            colEditarChofer.Text = "Editar";
+            colEditarChofer.UseColumnTextForButtonValue = true;
             colEditarChofer.Width = 125;
             // 
             // colEliminarChofer
@@ -292,6 +310,8 @@
             colEliminarChofer.MinimumWidth = 6;
             colEliminarChofer.Name = "colEliminarChofer";
             colEliminarChofer.ReadOnly = true;
+            colEliminarChofer.Text = "Eliminar";
+            colEliminarChofer.UseColumnTextForButtonValue = true;
             colEliminarChofer.Width = 125;
             // 
             // Form1
@@ -317,10 +337,12 @@
         private TabControl tabControlVehiculos;
         private TabPage tabPageVehiculos;
         private TabPage tabPageChoferes;
-        private TextBox textBoxPlacas;
+        private TextBox txtBuscarPlaca;
         private Button buttonBuscarPlaca;
         private Button buttonAgregarVehiculo;
         private DataGridView tableVehiculos;
+        private Button buttonAgregarChofer;
+        private DataGridView tableChoferes;
         private DataGridViewTextBoxColumn colPlacas;
         private DataGridViewTextBoxColumn colNumChofere;
         private DataGridViewTextBoxColumn colModelo;
@@ -330,8 +352,6 @@
         private DataGridViewTextBoxColumn colKmActual;
         private DataGridViewButtonColumn colEditar;
         private DataGridViewButtonColumn colEliminar;
-        private Button buttonAgregarChofer;
-        private DataGridView tableChoferes;
         private DataGridViewTextBoxColumn colNumChofer;
         private DataGridViewTextBoxColumn colNombre;
         private DataGridViewTextBoxColumn colFechaIngreso;

@@ -29,14 +29,14 @@
         private void InitializeComponent()
         {
             labelNumeroChofer = new Label();
-            textBoxNumeroChofer = new TextBox();
+            txtNumeroChofer = new TextBox();
             labelNombre = new Label();
-            textBoxNombre = new TextBox();
+            txtNombreChofer = new TextBox();
             labelFechaIngreso = new Label();
             dateTimeFechaIngreso = new DateTimePicker();
             labelSueldo = new Label();
             labelSignoPesos = new Label();
-            textBoxSueldo = new TextBox();
+            txtSueldo = new TextBox();
             buttonGuardar = new Button();
             SuspendLayout();
             // 
@@ -50,14 +50,14 @@
             labelNumeroChofer.Text = "Numero de chofer";
             labelNumeroChofer.Click += label1_Click;
             // 
-            // textBoxNumeroChofer
+            // txtNumeroChofer
             // 
-            textBoxNumeroChofer.Location = new Point(34, 47);
-            textBoxNumeroChofer.MaxLength = 2;
-            textBoxNumeroChofer.Name = "textBoxNumeroChofer";
-            textBoxNumeroChofer.PlaceholderText = "Ingrese el numero de chofer";
-            textBoxNumeroChofer.Size = new Size(212, 27);
-            textBoxNumeroChofer.TabIndex = 1;
+            txtNumeroChofer.Location = new Point(34, 47);
+            txtNumeroChofer.MaxLength = 2;
+            txtNumeroChofer.Name = "txtNumeroChofer";
+            txtNumeroChofer.PlaceholderText = "Ingrese el numero de chofer";
+            txtNumeroChofer.Size = new Size(212, 27);
+            txtNumeroChofer.TabIndex = 1;
             // 
             // labelNombre
             // 
@@ -68,14 +68,14 @@
             labelNombre.TabIndex = 2;
             labelNombre.Text = "Nombre del chofer";
             // 
-            // textBoxNombre
+            // txtNombreChofer
             // 
-            textBoxNombre.Location = new Point(34, 116);
-            textBoxNombre.MaxLength = 50;
-            textBoxNombre.Name = "textBoxNombre";
-            textBoxNombre.PlaceholderText = "Ingrese el nombre del chofer";
-            textBoxNombre.Size = new Size(212, 27);
-            textBoxNombre.TabIndex = 3;
+            txtNombreChofer.Location = new Point(34, 116);
+            txtNombreChofer.MaxLength = 50;
+            txtNombreChofer.Name = "txtNombreChofer";
+            txtNombreChofer.PlaceholderText = "Ingrese el nombre del chofer";
+            txtNombreChofer.Size = new Size(212, 27);
+            txtNombreChofer.TabIndex = 3;
             // 
             // labelFechaIngreso
             // 
@@ -112,13 +112,13 @@
             labelSignoPesos.TabIndex = 7;
             labelSignoPesos.Text = "$";
             // 
-            // textBoxSueldo
+            // txtSueldo
             // 
-            textBoxSueldo.Location = new Point(57, 250);
-            textBoxSueldo.Name = "textBoxSueldo";
-            textBoxSueldo.PlaceholderText = "Ingrese el sueldo";
-            textBoxSueldo.Size = new Size(125, 27);
-            textBoxSueldo.TabIndex = 8;
+            txtSueldo.Location = new Point(57, 250);
+            txtSueldo.Name = "txtSueldo";
+            txtSueldo.PlaceholderText = "Ingrese el sueldo";
+            txtSueldo.Size = new Size(125, 27);
+            txtSueldo.TabIndex = 8;
             // 
             // buttonGuardar
             // 
@@ -128,7 +128,7 @@
             buttonGuardar.TabIndex = 9;
             buttonGuardar.Text = "Guardar";
             buttonGuardar.UseVisualStyleBackColor = true;
-            buttonGuardar.Click += button1_Click;
+            buttonGuardar.Click += buttonGuardar_Click;
             // 
             // FormAgregarEditarChofer
             // 
@@ -136,14 +136,14 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
             Controls.Add(buttonGuardar);
-            Controls.Add(textBoxSueldo);
+            Controls.Add(txtSueldo);
             Controls.Add(labelSignoPesos);
             Controls.Add(labelSueldo);
             Controls.Add(dateTimeFechaIngreso);
             Controls.Add(labelFechaIngreso);
-            Controls.Add(textBoxNombre);
+            Controls.Add(txtNombreChofer);
             Controls.Add(labelNombre);
-            Controls.Add(textBoxNumeroChofer);
+            Controls.Add(txtNumeroChofer);
             Controls.Add(labelNumeroChofer);
             Name = "FormAgregarEditarChofer";
             Text = "Agregar chofer";
@@ -154,14 +154,14 @@
         #endregion
 
         private Label labelNumeroChofer;
-        private TextBox textBoxNumeroChofer;
+        private TextBox txtNumeroChofer;
         private Label labelNombre;
-        private TextBox textBoxNombre;
+        private TextBox txtNombreChofer;
         private Label labelFechaIngreso;
         private DateTimePicker dateTimeFechaIngreso;
         private Label labelSueldo;
         private Label labelSignoPesos;
-        private TextBox textBoxSueldo;
+        private TextBox txtSueldo;
         private Button buttonGuardar;
     }
 }
