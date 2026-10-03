@@ -1,7 +1,9 @@
 using ControlVehiculos.Models;
 using ControlVehiculos.Repositories;
 using System;
-using System.Windows.Forms;
+using System.Data;
+using System.Text;
+using ClosedXML.Excel;
 namespace ControlVehiculos
 {
     public partial class Form1 : Form
@@ -173,6 +175,17 @@ namespace ControlVehiculos
             // ELIMINAR CHOFER
             if (nombreColumna.Contains("Eliminar") || nombreColumna == "colBtnEliminarChofer")
             {
+
+                //Validar que el chofer no tiene vehiculos asignados
+                if (vehiculoRepo.choferConVehiculos(choferSeleccionado.numChofer))
+                {
+                    MessageBox.Show("No se puede eliminar el chofer '" + choferSeleccionado.nombre + "' porque actualmente tiene vehículos asignados.\n\n" +
+                                    "Debe editar los vehículos correspondientes para cambiar o desasignar el chofer antes de poder eliminarlo.",
+                                    "Restricción de integridad",
+                                    MessageBoxButtons.OK,
+                                    MessageBoxIcon.Warning);
+                    return; // Detenemos el proceso de eliminación
+                }
                 DialogResult confirmacion = MessageBox.Show($"¿Estás seguro de eliminar el chofer '{choferSeleccionado.nombre}'?",
                                                              "Confirmación de Baja",
                                                              MessageBoxButtons.YesNo,
@@ -182,7 +195,7 @@ namespace ControlVehiculos
                 {
                     try
                     {
-                        // Asegúrate de tener tu método Eliminar en el repositorio de choferes
+                        // Eliminar chofer usando el repositorio de choferes
                         choferRepo.Eliminar(choferSeleccionado.numChofer);
                         MessageBox.Show("Chofer eliminado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         RefrescarTabla();
@@ -197,11 +210,64 @@ namespace ControlVehiculos
             else if (nombreColumna.Contains("Editar") || nombreColumna == "colBtnEditarChofer")
             {
                 // mandamos el número de chofer al formulario en modo edición
-                /*FormAgregarEditarChofer formEditar = new FormAgregarEditarChofer(choferSeleccionado.numChofer);
+                FormAgregarEditarChofer formEditar = new FormAgregarEditarChofer(choferSeleccionado.numChofer);
                 formEditar.ShowDialog();
-                RefrescarTabla();*/
+                RefrescarTabla();
 
             }
+        }
+
+        private void buttonReporte_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                //Obtenemos los datos del reporte
+                DataTable dtReporte = vehiculoRepo.obtenerReporteConChoferes();
+
+                if (dtReporte.Rows.Count == 0)
+                {
+                    MessageBox.Show("No hay registros de vehículos para generar el reporte.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+
+                // Se elige donde guarda el archivo
+                SaveFileDialog saveDialog = new SaveFileDialog();
+                saveDialog.Filter = "Archivo de Excel (*.xlsx)|*.xlsx";
+                saveDialog.Title = "Guardar Reporte de Vehículos y Choferes";
+                saveDialog.FileName = "ReporteVehiculosChoferes_" + DateTime.Now.ToString("yyyyMMdd") + ".xlsx";
+
+                if (saveDialog.ShowDialog() == DialogResult.OK)
+                {
+                    // Crear el libro de excel
+                    using (var workbook = new XLWorkbook())
+                    {
+                        // Añadimos una hoja con nombre
+                        var worksheet = workbook.Worksheets.Add("Vehículos y Choferes");
+
+                        // Insertamos el DataTable completo
+                        worksheet.Cell(1, 1).InsertTable(dtReporte);
+
+                        // Ajustar el ancho de las columnas
+                        worksheet.Columns().AdjustToContents();
+
+
+                        //Guardamos el archivo en la ruta seleccionada
+                        workbook.SaveAs(saveDialog.FileName);
+                    }
+
+                    MessageBox.Show("Reporte generado correctamente", "Reporte Exitoso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ocurrió un error al generar el reporte: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void tabPageChoferes_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

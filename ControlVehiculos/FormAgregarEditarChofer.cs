@@ -54,7 +54,7 @@ namespace ControlVehiculos
         {
             try
             {
-                // Buscamos el auto por las placas
+                // Buscamos el chofer por su numero
                 Chofer chofer = choferRepo.obtenerPorNumero(numChofer);
 
                 if (chofer != null)

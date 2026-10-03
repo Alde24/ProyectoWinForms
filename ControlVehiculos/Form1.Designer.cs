@@ -30,6 +30,7 @@
         {
             tabControlVehiculos = new TabControl();
             tabPageVehiculos = new TabPage();
+            buttonReporte = new Button();
             tableVehiculos = new DataGridView();
             colPlacas = new DataGridViewTextBoxColumn();
             colNumChofere = new DataGridViewTextBoxColumn();
@@ -61,6 +62,7 @@
             // 
             // tabControlVehiculos
             // 
+            tabControlVehiculos.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             tabControlVehiculos.Appearance = TabAppearance.Buttons;
             tabControlVehiculos.Controls.Add(tabPageVehiculos);
             tabControlVehiculos.Controls.Add(tabPageChoferes);
@@ -73,6 +75,7 @@
             // 
             // tabPageVehiculos
             // 
+            tabPageVehiculos.Controls.Add(buttonReporte);
             tabPageVehiculos.Controls.Add(tableVehiculos);
             tabPageVehiculos.Controls.Add(buttonAgregarVehiculo);
             tabPageVehiculos.Controls.Add(buttonBuscarPlaca);
@@ -86,10 +89,23 @@
             tabPageVehiculos.UseVisualStyleBackColor = true;
             tabPageVehiculos.Click += tabPage1_Click;
             // 
+            // buttonReporte
+            // 
+            buttonReporte.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            buttonReporte.Location = new Point(601, 19);
+            buttonReporte.Name = "buttonReporte";
+            buttonReporte.Size = new Size(146, 29);
+            buttonReporte.TabIndex = 4;
+            buttonReporte.Text = "Generar reporte";
+            buttonReporte.UseVisualStyleBackColor = true;
+            buttonReporte.Click += buttonReporte_Click;
+            // 
             // tableVehiculos
             // 
             tableVehiculos.AllowUserToAddRows = false;
             tableVehiculos.AllowUserToDeleteRows = false;
+            tableVehiculos.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            tableVehiculos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             tableVehiculos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             tableVehiculos.Columns.AddRange(new DataGridViewColumn[] { colPlacas, colNumChofere, colModelo, colMarca, colFechaCompra, colCostoCompra, colKmActual, colEditar, colEliminar });
             tableVehiculos.Location = new Point(24, 54);
@@ -108,7 +124,6 @@
             colPlacas.MinimumWidth = 6;
             colPlacas.Name = "colPlacas";
             colPlacas.ReadOnly = true;
-            colPlacas.Width = 125;
             // 
             // colNumChofere
             // 
@@ -118,7 +133,6 @@
             colNumChofere.MinimumWidth = 6;
             colNumChofere.Name = "colNumChofere";
             colNumChofere.ReadOnly = true;
-            colNumChofere.Width = 125;
             // 
             // colModelo
             // 
@@ -128,7 +142,6 @@
             colModelo.MinimumWidth = 6;
             colModelo.Name = "colModelo";
             colModelo.ReadOnly = true;
-            colModelo.Width = 125;
             // 
             // colMarca
             // 
@@ -138,7 +151,6 @@
             colMarca.MinimumWidth = 6;
             colMarca.Name = "colMarca";
             colMarca.ReadOnly = true;
-            colMarca.Width = 125;
             // 
             // colFechaCompra
             // 
@@ -147,7 +159,6 @@
             colFechaCompra.MinimumWidth = 6;
             colFechaCompra.Name = "colFechaCompra";
             colFechaCompra.ReadOnly = true;
-            colFechaCompra.Width = 125;
             // 
             // colCostoCompra
             // 
@@ -156,7 +167,6 @@
             colCostoCompra.MinimumWidth = 6;
             colCostoCompra.Name = "colCostoCompra";
             colCostoCompra.ReadOnly = true;
-            colCostoCompra.Width = 125;
             // 
             // colKmActual
             // 
@@ -166,7 +176,6 @@
             colKmActual.MinimumWidth = 6;
             colKmActual.Name = "colKmActual";
             colKmActual.ReadOnly = true;
-            colKmActual.Width = 125;
             // 
             // colEditar
             // 
@@ -176,7 +185,6 @@
             colEditar.ReadOnly = true;
             colEditar.Text = "Editar";
             colEditar.UseColumnTextForButtonValue = true;
-            colEditar.Width = 125;
             // 
             // colEliminar
             // 
@@ -186,10 +194,10 @@
             colEliminar.ReadOnly = true;
             colEliminar.Text = "Eliminar";
             colEliminar.UseColumnTextForButtonValue = true;
-            colEliminar.Width = 125;
             // 
             // buttonAgregarVehiculo
             // 
+            buttonAgregarVehiculo.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             buttonAgregarVehiculo.Location = new Point(24, 355);
             buttonAgregarVehiculo.Name = "buttonAgregarVehiculo";
             buttonAgregarVehiculo.Size = new Size(144, 29);
@@ -231,9 +239,11 @@
             tabPageChoferes.TabIndex = 1;
             tabPageChoferes.Text = "Choferes";
             tabPageChoferes.UseVisualStyleBackColor = true;
+            tabPageChoferes.Click += tabPageChoferes_Click;
             // 
             // buttonAgregarChofer
             // 
+            buttonAgregarChofer.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             buttonAgregarChofer.Location = new Point(31, 334);
             buttonAgregarChofer.Name = "buttonAgregarChofer";
             buttonAgregarChofer.Size = new Size(122, 29);
@@ -246,6 +256,8 @@
             // 
             tableChoferes.AllowUserToAddRows = false;
             tableChoferes.AllowUserToDeleteRows = false;
+            tableChoferes.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            tableChoferes.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             tableChoferes.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             tableChoferes.Columns.AddRange(new DataGridViewColumn[] { colNumChofer, colNombre, colFechaIngreso, colSueldo, colEditarChofer, colEliminarChofer });
             tableChoferes.Location = new Point(31, 54);
@@ -264,7 +276,6 @@
             colNumChofer.MinimumWidth = 6;
             colNumChofer.Name = "colNumChofer";
             colNumChofer.ReadOnly = true;
-            colNumChofer.Width = 125;
             // 
             // colNombre
             // 
@@ -274,7 +285,6 @@
             colNombre.MinimumWidth = 6;
             colNombre.Name = "colNombre";
             colNombre.ReadOnly = true;
-            colNombre.Width = 125;
             // 
             // colFechaIngreso
             // 
@@ -283,7 +293,6 @@
             colFechaIngreso.MinimumWidth = 6;
             colFechaIngreso.Name = "colFechaIngreso";
             colFechaIngreso.ReadOnly = true;
-            colFechaIngreso.Width = 125;
             // 
             // colSueldo
             // 
@@ -292,7 +301,6 @@
             colSueldo.MinimumWidth = 6;
             colSueldo.Name = "colSueldo";
             colSueldo.ReadOnly = true;
-            colSueldo.Width = 125;
             // 
             // colEditarChofer
             // 
@@ -302,7 +310,6 @@
             colEditarChofer.ReadOnly = true;
             colEditarChofer.Text = "Editar";
             colEditarChofer.UseColumnTextForButtonValue = true;
-            colEditarChofer.Width = 125;
             // 
             // colEliminarChofer
             // 
@@ -312,7 +319,6 @@
             colEliminarChofer.ReadOnly = true;
             colEliminarChofer.Text = "Eliminar";
             colEliminarChofer.UseColumnTextForButtonValue = true;
-            colEliminarChofer.Width = 125;
             // 
             // Form1
             // 
@@ -358,5 +364,6 @@
         private DataGridViewTextBoxColumn colSueldo;
         private DataGridViewButtonColumn colEditarChofer;
         private DataGridViewButtonColumn colEliminarChofer;
+        private Button buttonReporte;
     }
 }

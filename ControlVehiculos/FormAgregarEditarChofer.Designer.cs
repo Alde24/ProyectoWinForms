@@ -55,7 +55,7 @@
             txtNumeroChofer.Location = new Point(34, 47);
             txtNumeroChofer.MaxLength = 2;
             txtNumeroChofer.Name = "txtNumeroChofer";
-            txtNumeroChofer.PlaceholderText = "Ingrese el numero de chofer";
+            txtNumeroChofer.PlaceholderText = "Ej. 10";
             txtNumeroChofer.Size = new Size(212, 27);
             txtNumeroChofer.TabIndex = 1;
             // 
@@ -73,7 +73,7 @@
             txtNombreChofer.Location = new Point(34, 116);
             txtNombreChofer.MaxLength = 50;
             txtNombreChofer.Name = "txtNombreChofer";
-            txtNombreChofer.PlaceholderText = "Ingrese el nombre del chofer";
+            txtNombreChofer.PlaceholderText = "Ej. Jose Hernan Hernadez";
             txtNombreChofer.Size = new Size(212, 27);
             txtNombreChofer.TabIndex = 3;
             // 
@@ -116,7 +116,7 @@
             // 
             txtSueldo.Location = new Point(57, 250);
             txtSueldo.Name = "txtSueldo";
-            txtSueldo.PlaceholderText = "Ingrese el sueldo";
+            txtSueldo.PlaceholderText = "Ej. 10000.00";
             txtSueldo.Size = new Size(125, 27);
             txtSueldo.TabIndex = 8;
             // 

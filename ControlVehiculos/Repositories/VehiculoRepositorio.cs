@@ -167,5 +167,43 @@ namespace ControlVehiculos.Repositories
             }
         }
 
+        //Obtener los vehiculos y sus choferes
+        public DataTable obtenerReporteConChoferes()
+        {
+            // Consulta SQL que une vehículos con choferes 
+            string query = @"
+                            SELECT v.Placas, v.Modelo, v.Marca, v.FechaCompra, v.CostoCompra, 
+                                   v.KmActual AS Kilometraje, 
+                                   IFNULL(CONCAT(c.NumChofer, ' - ', c.Nombre), 'Sin Asignar') AS ChoferAsignado
+                            FROM Vehiculos v 
+                            LEFT JOIN Choferes c ON v.NumChofer = c.NumChofer";
+
+            DataTable dt = new DataTable();
+            using (var conexion = ConexionBD.ObtenerConexion())
+            {
+                conexion.Open();
+                using (var adaptador = new MySqlDataAdapter(query, conexion))
+                {
+                    adaptador.Fill(dt);
+                }
+            }
+            return dt;
+        }
+
+        public bool choferConVehiculos(int numChofer)
+        {
+            string query = "SELECT COUNT(*) FROM Vehiculos WHERE numChofer = @numChofer";
+            using (var conexion = ConexionBD.ObtenerConexion())
+            {
+                conexion.Open();
+                using (var comando = new MySqlCommand(query, conexion))
+                {
+                    comando.Parameters.AddWithValue("@numChofer", numChofer);
+                    long count = (long)comando.ExecuteScalar();
+                    return count > 0;
+                }
+            }
+        }
+
     }
 }

@@ -14,6 +14,7 @@ namespace ControlVehiculos
     public partial class FormAgregarEditarVehiculo : Form
     {
         private VehiculoRepositorio vehiculoRepo = new VehiculoRepositorio();
+        private ChoferRepositorio choferRepo = new ChoferRepositorio();
         private bool esEdicion = false;
         private string placaOriginal = "";
 
@@ -134,16 +135,30 @@ namespace ControlVehiculos
                 }
                 else
                 {
-                    // Metodo de agregar (INSERT)
-                    resultado = vehiculoRepo.Agregar(
-                        txtPlaca.Text.Trim(),
-                        modelo,
-                        txtMarca.Text.Trim(),
-                        fechaCompra,
-                        costo,
-                        numChofer,
-                        km
-                    );
+                    //Verificar si existe el chofer
+                    var choferExiste = choferRepo.obtenerTodos().Any(c => c.numChofer == numChofer);
+
+                    if (choferExiste)
+                    {
+                        // Metodo de agregar (INSERT)
+                        resultado = vehiculoRepo.Agregar(
+                            txtPlaca.Text.Trim(),
+                            modelo,
+                            txtMarca.Text.Trim(),
+                            fechaCompra,
+                            costo,
+                            numChofer,
+                            km
+                        );
+                        
+                    }
+                    else
+                    {
+                        MessageBox.Show("El número de chofer no está registrado en el sistema. Por favor, registre primero al chofer o ingrese un número válido.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        txtNoChofer.Focus();
+                        return;
+                    }
+                    
                 }
 
                 if (resultado)

@@ -61,7 +61,7 @@
             txtPlaca.Location = new Point(38, 49);
             txtPlaca.MaxLength = 7;
             txtPlaca.Name = "txtPlaca";
-            txtPlaca.PlaceholderText = "Ingrese la placa";
+            txtPlaca.PlaceholderText = "Ej. AAA-123";
             txtPlaca.Size = new Size(134, 27);
             txtPlaca.TabIndex = 1;
             // 
@@ -70,7 +70,7 @@
             txtNoChofer.Location = new Point(38, 114);
             txtNoChofer.MaxLength = 2;
             txtNoChofer.Name = "txtNoChofer";
-            txtNoChofer.PlaceholderText = "Ingrese el número de chofer";
+            txtNoChofer.PlaceholderText = "Ej.10";
             txtNoChofer.Size = new Size(200, 27);
             txtNoChofer.TabIndex = 2;
             // 
@@ -99,7 +99,7 @@
             txtModelo.Location = new Point(38, 182);
             txtModelo.MaxLength = 4;
             txtModelo.Name = "txtModelo";
-            txtModelo.PlaceholderText = "Ingrese el modelo";
+            txtModelo.PlaceholderText = "Ej. 2022";
             txtModelo.Size = new Size(134, 27);
             txtModelo.TabIndex = 5;
             // 
@@ -108,7 +108,7 @@
             txtMarca.Location = new Point(38, 251);
             txtMarca.MaxLength = 25;
             txtMarca.Name = "txtMarca";
-            txtMarca.PlaceholderText = "Ingrese la marca";
+            txtMarca.PlaceholderText = "Ej. Mazda";
             txtMarca.Size = new Size(134, 27);
             txtMarca.TabIndex = 6;
             txtMarca.TextChanged += textBox1_TextChanged;
@@ -154,7 +154,7 @@
             // 
             txtCosto.Location = new Point(348, 114);
             txtCosto.Name = "txtCosto";
-            txtCosto.PlaceholderText = "Ingrese el costo de compra";
+            txtCosto.PlaceholderText = "Ej. 500000.00";
             txtCosto.Size = new Size(216, 27);
             txtCosto.TabIndex = 12;
             // 
@@ -163,7 +163,7 @@
             txtKilometraje.Location = new Point(328, 179);
             txtKilometraje.MaxLength = 10;
             txtKilometraje.Name = "txtKilometraje";
-            txtKilometraje.PlaceholderText = "Ingrese el kilometraje actual";
+            txtKilometraje.PlaceholderText = "Ej. 150.50";
             txtKilometraje.Size = new Size(197, 27);
             txtKilometraje.TabIndex = 13;
             // 
